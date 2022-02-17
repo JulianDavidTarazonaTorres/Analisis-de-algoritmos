@@ -1,0 +1,279 @@
+\documentclass[a4paper]{article}
+
+\usepackage[pages=all, color=black, position={current page.south}, placement=bottom, scale=1, opacity=1, vshift=5mm]{background}
+\SetBgContents{
+	\tt Análisis de algoritmos 2022-1
+}      % copyright
+
+\usepackage[margin=1in]{geometry} % full-width
+
+% AMS Packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm, algpseudocode}
+% Unicode
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\usepackage{outlines}
+\hypersetup{
+	unicode,
+%	colorlinks,
+%	breaklinks,
+%	urlcolor=cyan, 
+%	linkcolor=blue, 
+	pdfauthor={Author One, Author Two, Author Three},
+	pdftitle={A simple article template},
+	pdfsubject={A simple article template},
+	pdfkeywords={article, template, simple},
+	pdfproducer={LaTeX},
+	pdfcreator={pdflatex}
+}
+
+% Vietnamese
+%\usepackage{vntex}
+
+% Natbib
+\usepackage[sort&compress,numbers,square]{natbib}
+\bibliographystyle{mplainnat}
+
+% Theorem, Lemma, etc
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}{Claim}[theorem]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{criterion}[theorem]{Criterion}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{principle}[theorem]{Principle}
+
+\usepackage{graphicx, color}
+\graphicspath{{fig/}}
+
+%\usepackage[linesnumbered,ruled,vlined,commentsnumbered]{algorithm2e} % use algorithm2e for typesetting algorithms
+\usepackage{algorithm, algpseudocode} % use algorithm and algorithmicx for typesetting algorithms
+\usepackage{mathrsfs} % for \mathscr command
+
+\usepackage{lipsum}
+\usepackage{listings}
+
+% Author info
+\title{Análisis de algoritmos : Taller 1}
+\author{Carlos Escobar $^1$ \and Fabián Rojas$^1$ \and Julián Tarazona$^1$}
+
+
+\date{
+	$^1$Pontificia Universidad Javeriana \\ \texttt{\{escobartc, fabian-rojasm, jdtarazona\}@javeriana.edu.co}\\%
+	\today
+}
+
+\begin{document}
+
+	\maketitle
+\section{Resumen}
+	\label{sec:def}
+	\hspace
+	En este documento se presenta el problema del ordenamiento de
+    elementos y su solución a través del análisis, diseño y futura implementación del algoritmo de TimSort, el cual es
+    una combinación de los algoritmos merge sort y binary insertion sort, que es a su vez una mezcla de insertion sort y binary search. 
+    También se basa en el patrón dividir y vencer, además de ser utilizado como 
+    el algoritmo de ordenamiento nativo para el lenguaje Python. 
+
+	
+ 
+	\section{Análisis y diseño}
+	\label{sec:def}
+	\subsection{Análisis}
+	
+	\hspace{El ejercicio parte desde la necesidad de ordenar una secuencia de elementos utilizando el algoritmo de ordenamiento TimSort (algoritmo nativo de Python), el cual sigue el principio de dividir y vencer. Para esto, la secuencia de números a ordenar debe cumplir las siguientes condiciones:}
+	
+	
+	
+	\begin{itemize}
+	    \item La secuencia de números debe ser entera.
+	    \item La secuencia de números debe hacer parte del conjunto $\mathbb{T}$ de elementos ordenables.
+	\end{itemize}
+	
+
+	Por otro lado, en lo que respecta al algoritmo Timsort, este es de gran utilidad y es eficiente en la realidad, pues sigue la premisa que dice que en el arreglo de los datos a ordenar existen ya subsecuencias ordenadas de los mismos datos.\newline
+	
+	
+	Timsort tiene una forma de comportarse a acuerdo a la cantidad de elementos que tenga el arreglo, es decir si $\mathbb{\lvert S \rvert \leq}$ 64, entonces se ejecutará el método de \textit{Insertion Sort} por su eficiencia en ordenar con una cantidad pequeña de elementos.\newline
+		
+	Si por el contrario, $\mathbb{\lvert S \rvert > $ 64$}$  funciona de una manera "sencilla" a través de la combinación de algoritmos ya existentes, partiendo de la división de un arreglo en secciones que llevan el nombre de \textit{runs} (ejecuciones), estas no son más que las subsecuencias decrecientes o no decrecientes más larga.  Posteriormente se hace una clasificación de esas ejecuciones a través del método de ordenamiento \textit{Insertion Sort} y finalmente se combinan estas soluciones haciendo uso del método por ordenamiento conocido como \textit{Merge Sort}.\newline
+	
+	\subsection{Diseño}
+	\hspace{}
+	\begin{outline}[enumerate]
+	El diseño se compone de la definición de las siguientes entradas y salidas:
+	    \1 \textbf{Entradas:}  Una secuencia de números tal que $ S=\left\langle s_{1},s_{2},\cdots,s_{n}\right\rangle =\left\langle s_{i}\in\mathbb{T}\land1\le i\len\right\rangle
+    $ Donde $\mathbb{T}$ son el conjunto de elementos que pueden ser ordenables, n es la cardinaliad de la secuencia e i es el indice de cada elemento. En dicho conjunto debe estar definida la relación de orden parcial $\le$.
+	    
+	    \1 \textbf{Salidas:} El algoritmo retornará una permutación $S'$ de la secuencia de números S de forma que
+	    $S' =\left\langle s'_{i}\in S\land s'_{i-1}
+	    \le s'_{i}\forall1<i\land1\le i\le n\right\rangle$.
+	\end{outline}
+	
+	 	\section{Algoritmos}
+	 	
+	 	
+	\subsection{Pseudo-Código}
+	
+    \begin{algorithm}[H]
+    \begin{algorithmic}[1]
+
+    \Procedure{Timsort}{$S$,$b$,$e$}
+
+        \If{$e - b < 64$}
+
+            \State$InsertionSort(S)$
+
+        \Else 
+            \State$ q\leftarrow\left\lfloor \left(b+e\right)\div2\right\rfloor $
+            \State $Timsort(S,b,q)$
+            \State $Timsort(S,q + 1,e)$
+            \State $Merge(s,b,q,e)$
+        \EndIf
+
+    \EndProcedure
+
+    \end{algorithmic}
+
+    \caption{Timsort.}
+    \end{algorithm}
+
+    \begin{algorithm}[H]
+    \begin{algorithmic}[1]
+
+    \Procedure{Merge}{$S$,$b$,$q$,$e$}
+
+        \State$n_{1}\leftarrow q-b+1$
+
+    \State$n_{2}\leftarrow e-q$
+
+        \State\textbf{let} $L\left[1,n_{1}+1\right]$\textbf{ and} $R\left[1,n_{2}+1\right]$
+
+    \For{$i\leftarrow0$\textbf{ to} $n_{1}$}
+
+        \State$L\left[i\right]\leftarrow S\left[b+i-1\right]$
+
+    \EndFor
+
+    \For{$i\leftarrow0$\textbf{ to} $n_{2}$}cn
+
+        \State$R\left[i\right]\leftarrow S\left[q+i\right]$
+
+    \EndFor
+
+        \State$L\left[n_{1}+1\right]\leftarrow\infty\land R\left[n_{2}+1\right]\leftarrow\infty$
+
+        \State$i\leftarrow1\land j\leftarrow1$
+
+    \For{$k\leftarrow b$\textbf{ to} $e$}
+
+        \If{$L\left[i\right]<R\left[j\right]$}
+
+            \State$S\left[k\right]\leftarrow L\left[i\right]$
+
+            \State$i\leftarrow i+1$
+
+        \Else
+
+            \State$S\left[k\right]\leftarrow R\left[j\right]$
+        
+            \State$j\leftarrow j+1$
+
+        \EndIf
+
+    \EndFor
+
+    \EndProcedure
+
+    \end{algorithmic}
+
+    \caption{Merge.}
+    \end{algorithm}
+	
+	\begin{algorithm}[H]
+    \begin{algorithmic}[1]
+
+    \Procedure{InsertionSort}{$S$}
+
+        \For{$j\leftarrow2$ \textbf{to} $\left|\mathcal{S}\right|$}
+
+            \State$k\leftarrow\mathcal{S}\left[j\right]$
+
+            \State$i\leftarrow j-1$
+
+            \While{$0<i\land k<\mathcal{S}\left[i\right]$}
+
+                \State$\mathcal{S}\left[i+1\right]\leftarrow\mathcal{S}\left[i\right]$
+
+                \State$i\leftarrow i-1$
+
+            \EndWhile
+
+            \State$\mathcal{S}\left[i+1\right]\leftarrow k$
+
+        \EndFor
+
+        \EndProcedure
+
+    \end{algorithmic}
+
+\caption{InsertionSort}
+
+\end{algorithm} 	
+	\subsection{Complejidad}
+	
+	El algoritmo Timsort identifica ejecuciones, que son subsecuencias ascendentes y descendentes, usa además el Binary Insertion Sort dependiendo de la cardinalidad de la secuencia, un algoritmo que es más rápido que el Insertion Sort, luego mezcla las subsecuencias identificadas con el Merge Sort. Este algoritmo se comporta con normalidad, pues la complejidad no varía y por lo tanto es un algoritmo de ordenación estable, por lo que, tras inspeccionar el algoritmo con el teorema maestro, se determinó que este tiene un orden de complejidad \textbf{O(n(log(n))}.
+	
+	\subsection{Invariante}
+	
+    \begin{outline}[enumerate]
+	Invariante de TimSort:
+	
+	    \1 \textbf{Inicio:} El resultado de comparar el tamaño del arreglo original con el minRun.
+   
+	    \1 \textbf{Avance:} Se valida que el valor del tamaño de cada subarreglo (que cambia en cada itración) sea menor al minRun, se calcula el nuevo punto de partida para el subarreglo.
+	    
+	    \1 \textbf{Terminación:} El tamaño del arreglo resulta ser mayor al tamaño del minRun.
+	\end{outline}  
+	\begin{outline}[enumerate]
+	 Invariante de Merge:
+	
+	    \1 \textbf{Inicio:}El arreglo S contiene un elemento que está trivialmente ordenado.
+   
+	    \1 \textbf{Avance:} Se asume que el k-ésimo elemento de los subarreglos L y R es el más pequeño y ya se encuentra ordenado en S.
+	    
+	    \1 \textbf{Terminación:} Todos los elementos fueron reinsertados en el arreglo S y se encuentran ordenados.
+	 \end{outline} 
+	 \begin{outline}[enumerate]
+	  Invariante de InsertionSort:
+	
+	    \1 \textbf{Inicio:} El arreglo de la forma A[0,n] se recorrera en ese limite.
+   
+	    \1 \textbf{Avance:} En la i-ésima iteración el elemento actual se compara con su predecesor, moviendo hacia la derecha los elementos que sean mayores al actual.
+	    
+	    \1 \textbf{Terminación:} Todo lo que se encuentra a la izquierda de la  secuencia de números se encuentra ordeando en la n-ésima iteración.
+	  \end{outline}  
+	
+	
+	
+  
+
+	
+\end{document}
