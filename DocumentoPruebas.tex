@@ -1,0 +1,122 @@
+\documentclass[a4paper]{article}
+
+\usepackage[pages=all, color=black, position={current page.south}, placement=bottom, scale=1, opacity=1, vshift=5mm]{background}
+\SetBgContents{
+	\tt Análisis de algoritmos 2022-1
+}      % copyright
+
+\usepackage[margin=1in]{geometry} % full-width
+
+% AMS Packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm, algpseudocode}
+% Unicode
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\usepackage{outlines}
+\hypersetup{
+	unicode,
+%	colorlinks,
+%	breaklinks,
+%	urlcolor=cyan, 
+%	linkcolor=blue, 
+	pdfauthor={Author One, Author Two, Author Three},
+	pdftitle={A simple article template},
+	pdfsubject={A simple article template},
+	pdfkeywords={article, template, simple},
+	pdfproducer={LaTeX},
+	pdfcreator={pdflatex}
+}
+
+% Vietnamese
+%\usepackage{vntex}
+
+% Natbib
+\usepackage[sort&compress,numbers,square]{natbib}
+\bibliographystyle{mplainnat}
+
+% Theorem, Lemma, etc
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}{Claim}[theorem]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{criterion}[theorem]{Criterion}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{principle}[theorem]{Principle}
+
+\usepackage{graphicx, color}
+\graphicspath{{fig/}}
+
+%\usepackage[linesnumbered,ruled,vlined,commentsnumbered]{algorithm2e} % use algorithm2e for typesetting algorithms
+\usepackage{algorithm, algpseudocode} % use algorithm and algorithmicx for typesetting algorithms
+\usepackage{mathrsfs} % for \mathscr command
+
+\usepackage{lipsum}
+\usepackage{listings}
+
+% Author info
+\title{Análisis de algoritmos : Taller 1 Parte 2}
+\author{Carlos Escobar $^1$ \and Fabián Rojas$^1$ \and Julián Tarazona$^1$}
+
+
+\date{
+	$^1$Pontificia Universidad Javeriana \\ \texttt{\{escobartc, fabian-rojasm, jdtarazona\}@javeriana.edu.co}\\%
+	\today
+}
+
+\begin{document}
+
+	\maketitle
+\section{Resumen}
+	\label{sec:def}
+	\hspace
+	En este documento se presenta la implementación en el lenguaje de programación Rust del problema del ordenamiento de
+    elementos y su solución a través del algoritmo de TimSort, el cual es
+    una combinación de los algoritmos merge sort y binary insertion sort, que es a su vez una mezcla de insertion sort y binary search. 
+    También se basa en el patrón dividir y vencer, además de ser utilizado como 
+    el algoritmo de ordenamiento nativo para el lenguaje Python. 
+
+	
+	\section{Pruebas}
+	\label{sec:def}
+	\hspace
+	Para realizar las pruebas se plantea medir el tiempo de ejecución del algoritmo Timsort en el lenguaje de programación Rust de acuerdo a la cantidad de elementos que tiene una secuencia S a ordenar. De acuerdo a esto,se utilizó la plataforma Replit.com para el desarrollo de las pruebas, con una máquina virtual la cual poseía 0.5 vCPUs, 1GiB de memoria RAM y 1 GiB de almacenamiento. Se realizaron múltiples mediciones de tiempo con una cantidad de elementos en concreto, más específicamente diez veces. Entonces se realizan 10 corridas y mediciones de tiempo para los valores de 10, 50, 100, 500, 1000, 5000, 10000, 15000 y 20000 elementos. Una vez realizadas las 10 corridas, se promedia el tiempo de ejecución y se asigna en la tabla. Posteriormente para las pruebas se planteó realizar una recopilación de datos de la tabla que muestren la relación tamaño del arreglo y tiempo de ejecución del algoritmo, para a partir de esto generar una visualización en la herramienta Power BI y ver cómo se comporta este algoritmo entre más elementos deba ordenar de una secuencia. Los resultados se presentan a continuación:
+	
+  
+  
+  \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{Tabla pruebas.PNG}
+        \caption{Tabla del tiempo de ejecución de acuerdo a la cantidad de elementos de una secuencia para el algoritmo TimSort en Rust.}
+        \label{fig:ger}
+    \end{figure}
+  \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Gráfico pruebas.PNG}
+        \caption{Gráfico de tiempo de ejecución de acuerdo a la cantidad de elementos de una secuencia para el algoritmo TimSort en Rust. (Elaborado con power Bi)}
+        \label{fig:ger}
+    \end{figure}
+	\section{Conclusión}
+	\label{sec:def}
+	\hspace
+	Los resultados presentados en este documento muestran que el algoritmo Timsort diseñado en la primera parte de este trabajo no es ideal para el ordenamiento de grandes secuencias de números, a diferencia del algoritmo original que se encuentra implementado dentro del lenguaje Python.
+	
+    Otro inconveniente presentado fue en el uso del lenguaje Rust para la implementación del algoritmo, ya que las constantes limitaciones que presentaba el lenguaje sobre el manejo de la memoria para la asignación de espacio en los arreglos no permitieron realizar pruebas con arreglos con diferentes tamaños, por lo que se opto por realizar dichas pruebas con tamaños fijos.
+
+\end{document}

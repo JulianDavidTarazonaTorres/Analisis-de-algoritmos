@@ -1,0 +1,8 @@
+Manual de Compilación:
+1. Subir la carpeta "Timsort"a replit.com en un proycecto del lenguaje de programacion rust
+2. Correr el programa
+
+o,
+
+1. Acceder al link directo del proyecto en replit.com el cual es: https://replit.com/join/dddpwqsvod-fabianrojas
+2. Correr el programa
