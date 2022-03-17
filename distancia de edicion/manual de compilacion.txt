@@ -1,0 +1,8 @@
+Integrantes:
+Julian David tarazona
+Fabian Rojas
+Carlos Escobar
+
+Pasos para correr el código
+1) Copiar el codigo en el compilador de replit para qbasic
+2) Correr el código
