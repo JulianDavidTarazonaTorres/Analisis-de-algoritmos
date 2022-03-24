@@ -1,0 +1,5 @@
+Manual de compilación.
+
+Para ejecutar el archivo .cpp utilizar un compilador de c++ en replit o compilador de preferencia.
+
+El codigo genera automaticamente el precio total a pagar y el monto pagado y los resta para conseguir el valor de las vueltas, por lo que no es necesario ingresar un valor por consola.
