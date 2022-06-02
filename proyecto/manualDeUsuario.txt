@@ -1,0 +1,7 @@
+Manual de usuario:
+1) Ejecutar en la consola de comandos el archivo Python Jugar.py añadiendo como parametro el tamaño del tablero.
+
+2) Se mostraran los movimientos posibles y el tablero inicial. Para esta versión del proyecto se definió que fuera la casilla vacia la que pudiera realizar los movimientos, esto ahorra indicar que pieza mover.
+
+El algoritmo comienza a ejecutar el jugador automático y solo se veran cambios en pantalla hasta que este haya encontrado la ruta hasta el tablero objetivo.
+
